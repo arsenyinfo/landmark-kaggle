@@ -14,7 +14,7 @@ from src.utils import logger
 
 def get_callbacks(model_name, stage, fold):
     es = EarlyStopping(monitor='val_loss', min_delta=0, patience=10, verbose=1, mode='auto')
-    reducer = ReduceLROnPlateau(min_lr=1e-6, verbose=1, factor=0.1, patience=6)
+    reducer = ReduceLROnPlateau(min_lr=1e-6, verbose=1, factor=0.1, patience=2)
     checkpoint = ModelCheckpoint(f'models/{model_name}_{stage}_{fold}.h5',
                                  monitor='val_loss',
                                  save_best_only=True, verbose=0)

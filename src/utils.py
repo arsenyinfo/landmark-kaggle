@@ -1,5 +1,8 @@
 import logging
+from functools import partial
 
+from keras.applications.mobilenet import relu6, DepthwiseConv2D
+from keras.models import load_model as load_model_keras
 import numpy as np
 import cv2
 
@@ -73,3 +76,7 @@ def ten_crops(img, size):
     crops = five_crops(img, size)
     flips = [np.fliplr(x) for x in crops]
     return crops + flips
+
+
+load_model = partial(load_model_keras, compile=False, custom_objects={'relu6': relu6,
+                                                                      'DepthwiseConv2D': DepthwiseConv2D})

@@ -1,6 +1,6 @@
 from glob import glob
 from os import environ
-from functools import reduce, partial
+from functools import reduce
 
 from fire import Fire
 from tqdm import tqdm
@@ -8,12 +8,9 @@ import numpy as np
 
 environ['CUDA_VISIBLE_DEVICES'] = ''  # noqa
 
-from keras.models import load_model as load_model_keras
-from keras.applications.mobilenet import relu6, DepthwiseConv2D
 from keras import backend as K
 
-load_model = partial(load_model_keras, compile=False, custom_objects={'relu6': relu6,
-                                                                      'DepthwiseConv2D': DepthwiseConv2D})
+from src.utils import load_model
 
 
 def average(weights):

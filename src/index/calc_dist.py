@@ -26,7 +26,8 @@ def cosine(a, b):
 
 def get_data(prefix, name):
     ids = pd.read_csv(f'data/{prefix}.csv')['id']
-    f = File(f'data/features_{prefix}_{name}.h5', 'r')
+    fname = f'data/features_{prefix}_{name}.h5'
+    f = File(fname, 'r')
     vectors = f['result'][:]
     f.close()
 

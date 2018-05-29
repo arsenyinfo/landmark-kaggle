@@ -37,7 +37,7 @@ class Dataset:
 
         acc = defaultdict(list)
         for i, row in tqdm(df.iterrows(), total=df.shape[0]):
-            fold = i % 5
+            fold = i % 10
             acc[fold].append((row['id'], row['landmark_id']))
 
         return acc, n_classes
